@@ -1,0 +1,11 @@
+url,is_phishing
+http://192.168.1.1/login,1
+https://secure-banking-example.com/verify,1
+https://www.google.com,0
+http://example.com/@malicious-site,1
+https://legitwebsite.com/update-your-info-now,1
+https://amazon.com,0
+https://myuniversity.edu/portal,0
+http://10.0.0.5/reset-password,1
+https://github.com,0
+https://paypal.com-login-verification.com,1

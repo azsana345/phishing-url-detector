@@ -1,0 +1,5 @@
+http://192.168.1.1/login
+https://secure-banking-example.com/verify
+https://www.google.com
+http://example.com/@malicious-site
+https://legitwebsite.com/update-your-info-now

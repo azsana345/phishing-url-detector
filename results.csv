@@ -1,0 +1,6 @@
+URL,Domain,Has IP,Suspicious Keywords,Long URL,Contains @,Phishing Score (%),Is Phishing
+http://192.168.1.1/login,192.168.1.1.,True,True,False,False,50.0,True
+https://secure-banking-example.com/verify,secure-banking-example.com,False,True,False,False,25.0,False
+https://www.google.com,google.com,False,False,False,False,0.0,False
+http://example.com/@malicious-site,example.com,False,False,False,True,25.0,False
+https://legitwebsite.com/update-your-info-now,legitwebsite.com,False,True,False,False,25.0,False

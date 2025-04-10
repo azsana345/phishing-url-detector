@@ -8,12 +8,12 @@ url_history = []
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
-<html lang=\"en\">
+<html lang="en">
 <head>
-  <meta charset=\"UTF-8\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PhishDetect</title>
-  <link rel=\"icon\" href=\"{{ url_for('static', filename='favicon.png') }}\" type=\"image/png\">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
   <style>
     body {
       background-color: #ffffff;
@@ -52,7 +52,7 @@ HTML_TEMPLATE = """
       border-radius: 12px;
       overflow: hidden;
     }
-    input[type=\"text\"] {
+    input[type="text"] {
       flex: 1;
       padding: 1rem 1.2rem;
       font-size: 1rem;
@@ -61,7 +61,7 @@ HTML_TEMPLATE = """
       color: #111827;
       outline: none;
     }
-    input[type=\"text\"]::placeholder {
+    input[type="text"]::placeholder {
       color: #9ca3af;
     }
     button {
@@ -136,49 +136,49 @@ HTML_TEMPLATE = """
 </head>
 <body>
   <header>
-    <img src=\"{{ url_for('static', filename='logo.png') }}\" alt=\"PhishDetect Logo\" />
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="PhishDetect Logo" />
     <h1>PhishDetect</h1>
   </header>
   <main>
-    <form method=\"POST\">
-      <input type=\"text\" name=\"url\" placeholder=\"Enter a URL to check...\" required />
-      <button type=\"submit\">Check</button>
+    <form method="POST">
+      <input type="text" name="url" placeholder="Enter a URL to check..." required />
+      <button type="submit">Check</button>
     </form>
 
     {% if result %}
-    <div class=\"card\">
+    <div class="card">
       <p><strong>URL:</strong> {{ url }}</p>
       <p><strong>Domain:</strong> {{ result['domain'] }}</p>
       <p><strong>Phishing Score:</strong> {{ result['phishing_score'] }}%</p>
       <p><strong>Heuristic:</strong>
-        <span class=\"badge {{ 'phishing' if result['is_phishing'] else 'legit' }}\">
+        <span class="badge {{ 'phishing' if result['is_phishing'] else 'legit' }}">
           {{ 'Phishing' if result['is_phishing'] else 'Legitimate' }}
         </span>
       </p>
       <p><strong>ML Prediction:</strong>
-        <span class=\"badge {{ 'phishing' if ml_prediction == 1 else 'legit' }}\">
+        <span class="badge {{ 'phishing' if ml_prediction == 1 else 'legit' }}">
           {{ 'Phishing' if ml_prediction == 1 else 'Legitimate' }} ({{ (ml_confidence * 100) | round(2) }}% confidence)
         </span>
       </p>
       <p><strong>Why was this flagged?</strong></p>
-      <ul class=\"reasons\">
+      <ul class="reasons">
         {% for reason in result['reasons'] %}<li>{{ reason }}</li>{% endfor %}
       </ul>
     </div>
 
-    <div class=\"card\" style=\"display: flex; align-items: flex-start; gap: 20px;\">
-      <div style=\"flex-shrink: 0;\">
-        <canvas id=\"scoreChart\" width=\"140\" height=\"140\"></canvas>
+    <div class="card" style="display: flex; align-items: flex-start; gap: 20px;">
+      <div style="flex-shrink: 0;">
+        <canvas id="scoreChart" width="140" height="140"></canvas>
       </div>
-      <div style=\"flex: 1;\">
-        <p style=\"margin: 0; font-weight: bold;\">Graph Overview</p>
-        <p style=\"font-size: 0.95rem; line-height: 1.6;\">
+      <div style="flex: 1;">
+        <p style="margin: 0; font-weight: bold;">Graph Overview</p>
+        <p style="font-size: 0.95rem; line-height: 1.6;">
           This chart visually represents the phishing likelihood based on combined heuristic and ML evaluation.
         </p>
       </div>
     </div>
 
-    <script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const ctx = document.getElementById('scoreChart').getContext('2d');
       new Chart(ctx, {
@@ -200,7 +200,7 @@ HTML_TEMPLATE = """
     {% endif %}
 
     {% if history %}
-    <div class=\"card\">
+    <div class="card">
       <h3>Recently Checked URLs</h3>
       <table>
         <thead>
@@ -217,8 +217,8 @@ HTML_TEMPLATE = """
           {% endfor %}
         </tbody>
       </table>
-      <form method=\"POST\" action=\"/export\">
-        <button class=\"export-btn\" type=\"submit\">Export as CSV</button>
+      <form method="POST" action="/export">
+        <button class="export-btn" type="submit">Export as CSV</button>
       </form>
     </div>
     {% endif %}

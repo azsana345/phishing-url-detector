@@ -22,10 +22,10 @@ def fetch_openphish():
             for url in urls:
                 writer.writerow([url.strip(), 1])
 
-        print("[✅] Saved to 'openphish_dataset.csv' successfully.")
+        print("[OK] Saved to 'openphish_dataset.csv' successfully.")
 
     except Exception as e:
-        print("[❌] Failed to fetch OpenPhish feed:", e)
+        print("[ERROR] Failed to fetch OpenPhish feed:", e)
 
 if __name__ == "__main__":
     fetch_openphish()

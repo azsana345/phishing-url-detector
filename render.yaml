@@ -3,7 +3,7 @@ services:
     name: phishdetect
     runtime: python
     buildCommand: ""
-    startCommand: "python web_app.py"
+    startCommand: "gunicorn web_app:app"
     envVars:
       - key: FLASK_ENV
         value: production

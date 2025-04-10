@@ -31,7 +31,7 @@ def extract_features(url):
     shorteners = ['bit.ly', 'tinyurl', 't.co', 'goo.gl', 'ow.ly']
     features["is_shortened"] = 1 if any(s in url for s in shorteners) else 0
 
-    # ⛔ WHOIS feature disabled due to timeout issues
+    # WHOIS feature disabled due to timeout issues
     features["domain_age_days"] = 0
 
     return features
@@ -40,7 +40,7 @@ def extract_features(url):
 MODEL_PATH = "model.pkl"
 
 def train_and_save_model():
-    print("📚 Training new model...")
+    print("Training new model...")
 
     df = pd.read_csv("combined_dataset.csv")
     X = pd.DataFrame([extract_features(url) for url in df["url"]])
@@ -52,21 +52,21 @@ def train_and_save_model():
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
-    print("🚀 XGBoost Accuracy:", accuracy_score(y_test, y_pred))
-    print("\n📊 Classification Report:")
+    print("XGBoost Accuracy:", accuracy_score(y_test, y_pred))
+    print("\nClassification Report:")
     print(classification_report(y_test, y_pred))
 
     with open(MODEL_PATH, "wb") as f:
         pickle.dump(model, f)
 
-    print(f"✅ Model saved to {MODEL_PATH}")
+    print(f"Model saved to {MODEL_PATH}")
     return model
 
 # Load or train model
 if os.path.exists(MODEL_PATH):
     with open(MODEL_PATH, "rb") as f:
         model = pickle.load(f)
-    print("📦 Loaded model from model.pkl")
+    print("Model loaded from model.pkl")
 else:
     model = train_and_save_model()
 
